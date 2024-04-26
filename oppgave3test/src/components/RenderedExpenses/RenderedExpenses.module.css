@@ -1,15 +1,28 @@
 .rendered_expense_container {
 	border: solid bold black;
-	width: 35%;
+	width: 20%;
 	height: 75%;
+
 	display: flex;
 	flex-direction: column;
+
+	justify-content: center; 
+	align-items: center;
+
 	gap: 1rem;
 	padding: 1rem;
-	
 	background: linear-gradient(to bottom, #497c86, #61e5ff);
-	margin: 20px; 
-
+	margin: 20px;
 
 }
 
+.delete_button {
+	width: 5rem;
+	height: 2rem;
+	align-self: center;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 0.4rem;
+	
+	background: linear-gradient(to bottom, #fff48fde, #c7bf75de);
+}

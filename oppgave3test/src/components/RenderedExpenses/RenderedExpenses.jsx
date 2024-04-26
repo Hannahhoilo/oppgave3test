@@ -26,6 +26,7 @@ const RenderedExpenses = ({expenses}) => {
               {/* Add more details here as needed */}
             </li>
           ))}
+          <button onClick={() => handleDeleteExpense(expense.id)} className={styles.delete_button}>Delete</button>
         </ul>
       </div>
     </>

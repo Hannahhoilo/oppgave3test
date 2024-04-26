@@ -1,14 +1,7 @@
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	border-radius: 0.4rem;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
 .form_element{
-	width: 100%;
-	height: 100%;
+	width: 80%;
+	/* height: 100%; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -23,7 +16,7 @@
 	padding: 1rem;
 }
 
-legend {
+.legend {
 	font-weight: bolder;
 }
 
@@ -58,6 +51,7 @@ legend {
 .textarea_element {
 	resize: none;
 	width: 100%;
+	height: 4rem;
 	padding: 0.5rem;
 	background: #c5efff;
 	border-radius: 0.4rem;
