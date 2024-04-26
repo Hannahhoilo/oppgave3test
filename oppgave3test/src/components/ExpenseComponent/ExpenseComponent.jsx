@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
 import styles from "./ExpenseComponent.module.css";
 
-const ExpenceComponent = () => {
+import RenderedExpenses from "../RenderedExpenses/RenderedExpenses";
+
+const ExpenseComponent = () => {
   const [userData, setUserData] = useState({
     expenseTitle: "",
     expenseAmount: "",
-    expenceDate: "",
+    expenseDate: "",
     phoneNumber: "",
     subject: "",
     message: "",
@@ -14,7 +16,7 @@ const ExpenceComponent = () => {
   const [errors, setErrors] = useState({
     expenseTitleError: "",
     expenseAmountError: "",
-    expenceDateError: "",
+    expenseDateError: "",
     phoneNumberError: "",
     subjectError: "",
     messageError: "",
@@ -52,7 +54,7 @@ const ExpenceComponent = () => {
       const newExpense = {
         title: userData.expenseTitle,
         amount: userData.expenseAmount,
-        date: userData.expenceDate,
+        date: userData.expenseDate,
         phoneNumber: userData.phoneNumber,
         subject: userData.subject,
         message: userData.message,
@@ -61,7 +63,7 @@ const ExpenceComponent = () => {
       setUserData({
         expenseTitle: "",
         expenseAmount: "",
-        expenceDate: "",
+        expenseDate: "",
         phoneNumber: "",
         subject: "",
         message: "",
@@ -70,6 +72,7 @@ const ExpenceComponent = () => {
   };
 
   return (
+	<>
     <div>
       <form className={styles.form_element} onSubmit={handleSubmit}>
         <fieldset className={styles.contact_form_container}>
@@ -77,7 +80,7 @@ const ExpenceComponent = () => {
 
           <div className={styles.input_group}>
             <label htmlFor="expenseTitle">
-              Expence title<sup>*</sup>
+              Expense title<sup>*</sup>
             </label>
             <input
               type="text"
@@ -106,18 +109,18 @@ const ExpenceComponent = () => {
           </div>
 
           <div className={styles.input_group}>
-            <label htmlFor="expenceDate">
+            <label htmlFor="expenseDate">
               Expense Date<sup>*</sup>
             </label>
             <input
               type="date"
-              name="expenceDate"
+              name="expenseDate"
               placeholder="Enter your Expense Date"
               className={styles.input_element}
-              value={userData.expenceDate}
+              value={userData.expenseDate}
               onChange={handleChange}
             />
-            <p>{errors.expenceDateError}</p>
+            <p>{errors.expenseDateError}</p>
           </div>
 
           <div className={styles.input_group}>
@@ -147,7 +150,7 @@ const ExpenceComponent = () => {
           </div>
 
           <div className={styles.input_group}>
-            <label htmlFor="format">Type of expence</label>
+            <label htmlFor="format">Type of expense</label>
             <select
               name="format"
               class="format"
@@ -193,27 +196,13 @@ const ExpenceComponent = () => {
           <button className={styles.submit_button}>Submit</button>
         </fieldset>
 
-        <div className={styles.rendered_expence_container}>
-          <h2>Rendered Expenses:</h2>
-          <ul>
-            {expenses.map((expense, index) => (
-              <li key={index}>
-                <h3>{expense.title}</h3>
-                <p>Amount: {expense.amount}</p>
-                <p>Date: {expense.date}</p>
-                <p>Phone number: {expense.phoneNumber}</p>
-                <p>Subject: {expense.subject}</p>
-                <p>Message: {expense.message}</p>
-                <p>Type of expence: {expense.format}</p>
-                
-                {/* Add more details here as needed */}
-              </li>
-            ))}
-          </ul>
-        </div>
+        
       </form>
+	  
+	  <RenderedExpenses expenses={expenses} />
     </div>
+	</>
   );
 };
 
-export default ExpenceComponent;
+export default ExpenseComponent;

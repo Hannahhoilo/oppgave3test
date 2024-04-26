@@ -1,0 +1,15 @@
+.rendered_expense_container {
+	border: solid bold black;
+	width: 35%;
+	height: 75%;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	
+	background: linear-gradient(to bottom, #497c86, #61e5ff);
+	margin: 20px; 
+
+
+}
+

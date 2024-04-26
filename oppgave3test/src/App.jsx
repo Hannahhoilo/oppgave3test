@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import ExpenceComponent from "./components/ExpenseComponent/ExpenseComponent";
 import styles from "./App.module.css";
-import RenderedExpenses from "./components/RenderedExpenses/RenderedExpenses";
+import ExpenseComponent from "./components/ExpenseComponent/ExpenseComponent";
 
 
 function App() {
@@ -10,8 +9,8 @@ function App() {
     <>
       <div className={styles.main_container}>
         <h1>Expense Tracker!</h1>
-        <ExpenceComponent></ExpenceComponent>
-        <RenderedExpenses></RenderedExpenses>
+        <ExpenseComponent></ExpenseComponent>
+        
       </div>
     </>
   );
