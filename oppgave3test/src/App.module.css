@@ -1,0 +1,11 @@
+.main_container {
+	width: 100%;
+	height: 100vh;
+	color: #fff48fde;
+	background-color: #392529;
+	background: linear-gradient(to bottom, #392529, #d82f51);
+}
+
+h1 {
+	color:#27f8ff;
+}

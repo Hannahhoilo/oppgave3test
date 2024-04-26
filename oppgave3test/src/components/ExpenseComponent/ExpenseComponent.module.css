@@ -1,0 +1,104 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border-radius: 0.4rem;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form_element{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.contact_form_container{
+	width: 35%;
+	height: 75%;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+}
+
+legend {
+	font-weight: bolder;
+}
+
+.name_section, .contact_section {
+	width: 100%;
+	display: flex;
+	gap: 1rem;
+}
+
+.name_section div, .contact_section div {
+	width: 100%;
+}
+
+.input_group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.input_group p{
+	color: #a72b2b;
+}
+
+.input_element {
+	background: #c5efff;
+	width: 100%;
+	height: 2rem;
+	padding: 0 0.5rem;
+	border-radius: 0.4rem;
+}
+
+.textarea_element {
+	resize: none;
+	width: 100%;
+	padding: 0.5rem;
+	background: #c5efff;
+	border-radius: 0.4rem;
+}
+
+.message_error_and_count {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.expenceAmount, .quantity {
+	width: 20%;
+	height: 4rem;
+	align-self: center;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 0.4rem;
+	background: red;
+}
+
+.submit_button {
+	width: 40%;
+	height: 2rem;
+	align-self: center;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 0.4rem;
+}
+
+.rendered_expence_container {
+	border: solid bold black;
+	width: 35%;
+	height: 75%;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	
+	background: linear-gradient(to bottom, #eb89f8, #a66dac);
+	margin: 20px; 
+
+
+}
