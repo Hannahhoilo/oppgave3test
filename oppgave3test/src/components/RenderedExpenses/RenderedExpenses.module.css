@@ -2,6 +2,7 @@
 	border: solid bold black;
 	width: 20%;
 	height: 75%;
+	
 
 	display: flex;
 	flex-direction: column;
@@ -14,6 +15,12 @@
 	background: linear-gradient(to bottom, #497c86, #61e5ff);
 	margin: 20px;
 
+
+}
+
+.rendered_expense_container li p {
+	margin-top: 10px;
+
 }
 
 .delete_button {
@@ -23,6 +30,8 @@
 	align-items: center;
 	cursor: pointer;
 	border-radius: 0.4rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	
 	background: linear-gradient(to bottom, #fff48fde, #c7bf75de);
 }

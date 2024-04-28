@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect} from "react";
 import styles from "./ExpenseComponent.module.css";
 
-import RenderedExpenses from "../RenderedExpenses/RenderedExpenses";
+//import RenderedExpenses from "../RenderedExpenses/RenderedExpenses";
 
-const ExpenseComponent = () => {
+const ExpenseComponent = ({renderExpensesFromLocalStorage}) => {
   const [userData, setUserData] = useState({
     expenseTitle: "",
     expenseAmount: "",
@@ -11,6 +11,7 @@ const ExpenseComponent = () => {
     phoneNumber: "",
     subject: "",
     message: "",
+    format: "housing",
   });
 
   const [errors, setErrors] = useState({
@@ -22,35 +23,14 @@ const ExpenseComponent = () => {
     messageError: "",
   });
 
+
   const [expenses, setExpenses] = useState([]);
 
   const textAreaElement = useRef(null);
 
-  const validateForm = () => {
-    const clonedErrors = { ...errors };
-    // Validation logic remains the same...
-    setErrors(clonedErrors);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [`${name}Error`]: "",
-    }));
-    setUserData((prev) => ({ ...prev, [name]: value }));
-    if (name === "message" && value.length >= 300) {
-      setErrors((prev) => ({
-        ...prev,
-        messageErrors: "Maximum characters allowed is 300!",
-      }));
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    validateForm();
-    if (Object.values(errors).every((error) => !error)) {
+  useEffect(() => {
+    if (checkForNoErrors()) {
+      console.log("ok")
       const newExpense = {
         title: userData.expenseTitle,
         amount: userData.expenseAmount,
@@ -60,6 +40,8 @@ const ExpenseComponent = () => {
         message: userData.message,
       };
       setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+      localStorage.setItem(userData.expenseTitle, JSON.stringify(userData));
+      renderExpensesFromLocalStorage();
       setUserData({
         expenseTitle: "",
         expenseAmount: "",
@@ -68,8 +50,72 @@ const ExpenseComponent = () => {
         subject: "",
         message: "",
       });
+    };
+  }, [errors]);
+
+  const resetErrors = () => {
+    const newState = {};
+    for(const key in errors){
+      newState[key] = "";
     }
+    setErrors(newState);
+    console.log("reset")
+  }
+
+  const validateForm = () => {
+    setErrors((prevErrors) => {
+      // Validation logic remains the same...
+      const newErrors = { ...prevErrors };
+  
+      if (userData.expenseAmount === "") {
+        console.log("error");
+        newErrors.expenseAmountError = "Fill in amount";
+      }
+  
+      if (userData.expenseTitle === "") {
+        console.log("error");
+        newErrors.expenseTitleError = "Fill in title";
+      }
+  
+      if (!/^\d+$/.test(userData.phoneNumber)) {
+        console.log("error");
+        newErrors.phoneNumberError = "Only numbers";
+      }
+  
+      if (userData.message.length > 80) {
+        console.log("error");
+        newErrors.messageError = "Too long message";
+      }
+  
+      console.log("validated");
+      return newErrors;
+    });
   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setUserData((prev) => ({ ...prev, [name]: value }));
+
+  };
+
+  const checkForNoErrors = () => {
+    console.log("check")
+    for (const key in errors) {
+      if (errors[key] !== "") {
+        return false;
+      }
+    }
+    return true;
+  };
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    validateForm();
+  };
+  
 
   return (
 	<>
@@ -153,7 +199,7 @@ const ExpenseComponent = () => {
             <label htmlFor="format">Type of expense</label>
             <select
               name="format"
-              class="format"
+              htmlFor="format"
               className={styles.input_element}
               onChange={handleChange}
               required
@@ -174,8 +220,8 @@ const ExpenseComponent = () => {
               name="message"
               cols="30"
               rows="10"
-              placeholder="Max characters 300"
-              maxLength={300}
+              placeholder="Max characters 80"
+              maxLength={80}
               className={styles.textarea_element}
               ref={textAreaElement}
               value={userData.message}
@@ -188,7 +234,7 @@ const ExpenseComponent = () => {
                 {textAreaElement.current
                   ? textAreaElement.current.value.length
                   : 0}{" "}
-                / 300
+                / 80
               </p>
             </div>
           </div>
@@ -199,7 +245,7 @@ const ExpenseComponent = () => {
         
       </form>
 	  
-	  <RenderedExpenses expenses={expenses} />
+	  { /*<RenderedExpenses expenses={expenses} /> */ }
     </div>
 	</>
   );
